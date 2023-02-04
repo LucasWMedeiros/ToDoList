@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -8,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +36,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Checkbox(value: true, onChanged: (_) {}),
-                  Text('Começar projeto Flutter'),
-                  Text('03/02/2023'),
+                   Text(
+                    'Começar projeto Flutter',
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        decoration: TextDecoration.lineThrough),
+                  ),
+                  Text(
+                    '03/02/2023',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      decoration: TextDecoration.lineThrough
+                    ),
+                  ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.delete),
+                    icon: Icon(
+                      Icons.delete,
+                    ),
                   )
                 ],
               ),
