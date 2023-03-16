@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todolist/components/itens_list.dart';
 import 'package:todolist/model/item_model.dart';
-import 'package:todolist/screen/new_item_screen.dart';
+import 'package:todolist/components/new_item_form.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -18,6 +18,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   DateTime date = DateTime.now();
   bool isChecked = false;
+
+  _openNewItemForm() {
+    showModalBottomSheet(context: context, builder: (ctx) {
+      return NewItemForm();
+    });
+  }
 
   _onChangedCheck(bool value, int index) {
     setState(() {
@@ -57,9 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-             Navigator.of(context).push(
-            MaterialPageRoute(builder: ((context) => NewItemScreen()))
-          );
+              _openNewItemForm();
             },
             icon: const Icon(
               Icons.add,
@@ -71,11 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(child: ItemsList(itemList, _onChangedCheck, _removeItem)),
       floatingActionButton: FloatingActionButton(
         isExtended: true,
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: ((context) => NewItemScreen()))
-          );
-        },
+        onPressed: _openNewItemForm,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
