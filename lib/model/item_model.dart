@@ -1,11 +1,11 @@
 class ItemModel {
   final String title;
   DateTime? limiteDate;
-  final bool completed;
+  bool completed;
 
   ItemModel({
     required this.title,
-    limiteDate,
+    this.limiteDate,
     this.completed = false,
   });
 }
