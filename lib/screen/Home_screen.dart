@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todolist/components/itens_list.dart';
@@ -15,16 +17,26 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   DateTime date = DateTime.now();
   bool isChecked = false;
-  List<ItemModel> list = [
+
+  _onChangedCheck(bool value, int index) {
+    setState(() {
+      itemList[index].completed = value;
+    });
+  }
+
+  List<ItemModel> itemList = [
     ItemModel(
+        id: Random().nextBool().toString(),
         title: 'Isso é um compromisso',
         limiteDate: DateTime.now(),
         completed: true),
     ItemModel(
+        id: Random().nextBool().toString(),
         title: 'Isso é uma Tarefa',
         limiteDate: DateTime.now().subtract(Duration(days: 2)),
         completed: false),
     ItemModel(
+        id: Random().nextBool().toString(),
         title: 'Isso é uma Tarefa 02',
         limiteDate: DateTime.now(),
         completed: false),
@@ -47,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Container(child: ItemsList(list)),
+      body: Container(child: ItemsList(itemList, _onChangedCheck)),
       floatingActionButton: FloatingActionButton(
         isExtended: true,
         onPressed: () {},

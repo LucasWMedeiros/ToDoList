@@ -4,8 +4,9 @@ import 'package:todolist/model/item_model.dart';
 
 class ItemsList extends StatelessWidget {
   final List<ItemModel> itens;
+  Function onChanged;
 
-  ItemsList(this.itens);
+  ItemsList(this.itens, this.onChanged);
 
   bool? isChecked;
   @override
@@ -19,9 +20,7 @@ class ItemsList extends StatelessWidget {
             child: ListTile(
               leading: Checkbox(
                 value: item.completed,
-                onChanged: (value) {
-                  print(item.limiteDate);
-                },
+                onChanged: (value) => onChanged(value, index),
               ),
               title: Text(
                 item.title,
