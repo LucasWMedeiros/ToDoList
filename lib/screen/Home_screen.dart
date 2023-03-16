@@ -19,10 +19,26 @@ class _HomeScreenState extends State<HomeScreen> {
   DateTime date = DateTime.now();
   bool isChecked = false;
 
-  _openNewItemForm() {
-    showModalBottomSheet(context: context, builder: (ctx) {
-      return NewItemForm();
+  _addNewitem(String title, DateTime? date) {
+    final newItem = ItemModel(
+      id: Random().nextDouble().toString(),
+      title: title,
+      limiteDate: date
+    );
+
+    setState(() {
+    itemList.add(newItem);
     });
+
+    Navigator.of(context).pop();
+  }
+
+  _openNewItemForm() {
+    showModalBottomSheet(
+        context: context,
+        builder: (ctx) {
+          return NewItemForm(_addNewitem);
+        });
   }
 
   _onChangedCheck(bool value, int index) {
