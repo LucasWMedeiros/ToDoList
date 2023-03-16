@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todolist/components/itens_list.dart';
 import 'package:todolist/model/item_model.dart';
+import 'package:todolist/screen/new_item_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -32,17 +33,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<ItemModel> itemList = [
     ItemModel(
-        id: Random().nextBool().toString(),
+        id: '2',
         title: 'Isso é um compromisso',
         limiteDate: DateTime.now(),
         completed: true),
     ItemModel(
-        id: Random().nextBool().toString(),
+        id: '1',
         title: 'Isso é uma Tarefa',
         limiteDate: DateTime.now().subtract(Duration(days: 2)),
         completed: false),
     ItemModel(
-        id: Random().nextBool().toString(),
+        id: '3',
         title: 'Isso é uma Tarefa 02',
         limiteDate: DateTime.now(),
         completed: false),
@@ -56,7 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              print(DateTime.now().subtract(Duration(days: 2)));
+             Navigator.of(context).push(
+            MaterialPageRoute(builder: ((context) => NewItemScreen()))
+          );
             },
             icon: const Icon(
               Icons.add,
@@ -68,7 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(child: ItemsList(itemList, _onChangedCheck, _removeItem)),
       floatingActionButton: FloatingActionButton(
         isExtended: true,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: ((context) => NewItemScreen()))
+          );
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
