@@ -26,9 +26,11 @@ class ItemsList extends StatelessWidget {
               title: Text(
                 item.title,
                 style: TextStyle(
-                  fontStyle: item.completed ? FontStyle.italic : FontStyle.normal,
-                  decoration: item.completed ? TextDecoration.lineThrough : TextDecoration.none
-                ),
+                    fontStyle:
+                        item.completed ? FontStyle.italic : FontStyle.normal,
+                    decoration: item.completed
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none),
               ),
               subtitle: Text(
                 item.limiteDate != null
@@ -43,7 +45,10 @@ class ItemsList extends StatelessWidget {
                                 DateTime.now().subtract(Duration(days: 1))) &&
                             item.completed == false
                         ? Colors.red
-                        : Colors.grey),
+                        : Colors.grey,
+                    decoration: item.completed
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none),
               ),
               trailing: IconButton(
                 icon: Icon(Icons.delete),
