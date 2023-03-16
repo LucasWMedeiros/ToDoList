@@ -24,6 +24,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  _removeItem(String id) {
+    setState(() {
+      itemList.removeWhere((element) => element.id == id);
+    });
+  }
+
   List<ItemModel> itemList = [
     ItemModel(
         id: Random().nextBool().toString(),
@@ -59,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Container(child: ItemsList(itemList, _onChangedCheck)),
+      body: Container(child: ItemsList(itemList, _onChangedCheck, _removeItem)),
       floatingActionButton: FloatingActionButton(
         isExtended: true,
         onPressed: () {},

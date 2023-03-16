@@ -5,8 +5,9 @@ import 'package:todolist/model/item_model.dart';
 class ItemsList extends StatelessWidget {
   final List<ItemModel> itens;
   Function onChanged;
+  Function remove;
 
-  ItemsList(this.itens, this.onChanged);
+  ItemsList(this.itens, this.onChanged, this.remove);
 
   bool? isChecked;
   @override
@@ -46,7 +47,7 @@ class ItemsList extends StatelessWidget {
               ),
               trailing: IconButton(
                 icon: Icon(Icons.delete),
-                onPressed: () {},
+                onPressed: () => remove(item.id),
               ),
             ));
       },
