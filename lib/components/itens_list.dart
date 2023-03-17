@@ -41,11 +41,11 @@ class ItemsList extends StatelessWidget {
                         : DateFormat('dd MMM y').format(item.limiteDate!)
                     : 'Data indeterminada',
                 style: TextStyle(
-                    color: item.limiteDate!.isBefore(
+                    color: item.limiteDate != null ? item.limiteDate!.isBefore(
                                 DateTime.now().subtract(Duration(days: 1))) &&
                             item.completed == false
                         ? Colors.red
-                        : Colors.grey,
+                        : Colors.grey : Colors.grey,
                     decoration: item.completed
                         ? TextDecoration.lineThrough
                         : TextDecoration.none),
